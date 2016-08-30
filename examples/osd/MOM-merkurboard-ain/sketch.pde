@@ -16,9 +16,12 @@ extern "C" {
 #include "net/netstack.h"
 
 extern resource_t res_led, res_battery, res_cputemp;
+uint8_t led_pin = 4;
+uint8_t led_status = 0;
 
-uint8_t led_pin=4;
-uint8_t led_status;
+extern resource_t res_ain;
+uint8_t ain_pin = A5;
+uint16_t ain_value = 0;
 }
 
 void setup (void)
@@ -26,12 +29,14 @@ void setup (void)
     // switch off the led
     pinMode(led_pin, OUTPUT);
     digitalWrite(led_pin, HIGH);
-    led_status=0;
+    // set analog reference to EXTERNAL - connect AREF to 3V3 by wire
+    analogReference(ADC_EXTERNAL);
     // init coap resourcen
     rest_init_engine ();
     rest_activate_resource (&res_led, "s/led");
     rest_activate_resource (&res_battery, "s/battery");
     rest_activate_resource (&res_cputemp, "s/cputemp");
+    rest_activate_resource (&res_ain, "s/ain");
     
  //   NETSTACK_MAC.off(1);
 }
