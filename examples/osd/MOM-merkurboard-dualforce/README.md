@@ -1,11 +1,14 @@
-Arduino compatibility example
+MOM-merkurboard-din
 =============================
 
-This example shows that it is now possible to re-use arduino sketches in
-Contiki. This example documents the necessary magic. Arduino specifies
-two routines, `setup` and `loop`. Before `setup` is called, the
-framework initializes hardware. In original Arduino, all this is done in
-a `main` function (in C). For contiki we define a process that does the
-same.
+This supplies dual force sensor input for [Make-O-Matic](http://www.make-o-matic.io/)
+It reads two analog inputs and return the bigger value of the two.
 
-See the documentation file in apps/contiki-compat/README.md
+Force sensor is connected to GND and has 10 kOhm Pullup.
+
+The used inputs are arduino Pin A4 and A5.
+
+Connect AREF to 3V3 by wire!
+
+Forked from [OSDomotics](https://github.com/osdomotics/osd-contiki/tree/osd/examples/osd/arduino-merkurboard) [arduino-merkurboard example](../arduino-merkurboard)
+
